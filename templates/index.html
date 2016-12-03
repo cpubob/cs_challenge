@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
+  </head>
+  <body>
+    <h1>Hello Local Hack Day!</h1>
+    {% if vars['price'] %}
+      <p>The current stock price is {{ vars['price'] }}</p>
+    {% else %}
+      <p>The stock price is currently unavailable.</p>
+    {% endif %}
+
+    {% if vars['frameworks'] %}
+    <table>
+      {% for framework in vars['frameworks'] %}
+        <tr><td>{{ framework }}</tr></td>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </body>
+</html>

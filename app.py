@@ -5,6 +5,7 @@ vars = {}
 
 @app.route('/')
 def get_root():
+    vars['solution'] = None
     return render_template("index.html", vars=vars)
 
 

@@ -4,12 +4,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
   </head>
   <body>
-    <h1>Hello Local Hack Day!</h1>
+
+    <h1>The Challenge is:</h1>
+    <p>{{ vars['challenge'] }}
 
     <form action="/" method="post">
       <textarea name="Solution" rows=20 cols=100 >{% if vars['solution'] %}{{ vars['solution'] }}{% else %}Enter you solution here...{% endif %}</textarea><p>
       <input type="submit">
     </form>
+
+    <h2>Your Status is:</h2>
+    <p>{{ vars['response'] }}
 
 
   </body>

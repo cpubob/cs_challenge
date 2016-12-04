@@ -4,7 +4,7 @@ from flask import Flask, render_template,request,jsonify
 challenge = [{
     'test':'for t in [[1.05,1],[1.25,1.25],[-1.26,-1.25],[.38,.5]]:\n  print g(t[0]) == t[1]',
     'description': 'Given two numbers, a and b, multiply them together and round the value to nearest quarter.',
-    'baseSolution': 'def g(a, b):\n  #TODO Your solution here\n',
+    'baseSolution': 'def g(a):\n  #TODO Your solution here\n',
     }]
 
 

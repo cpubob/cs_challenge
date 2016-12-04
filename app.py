@@ -1,15 +1,25 @@
 import requests
 from flask import Flask, render_template,request,jsonify
 
+challenge = [{
+    'test':'for t in [[1.05,1],[1.25,1.25],[-1.26,-1.25],[.38,.5]]:\n  print g(t[0]) == t[1]',
+    'description': 'Given two numbers, a and b, multiply them together and round the value to nearest quarter.',
+    'baseSolution': 'def g(a, b):\n  #TODO Your solution here\n',
+    }]
+
+
+
 app = Flask(__name__)
 vars = {}
+vars['challenge'] =  challenge[0]['description']
+
 vars['response'] = None
 
-challengeTests = 'for t in [[[1,1],2],[[2,2],4]]:\n  print g(t[0][0], t[0][1]) == t[1]'
+
 
 @app.route('/')
 def get_root():
-    vars['solution'] = None
+    vars['solution'] = challenge[0]['baseSolution']
     vars['response'] = None
 
     return render_template("index.html", vars=vars)
@@ -23,7 +33,7 @@ def add_message(uuid):
 @app.route('/', methods=['POST'])
 def post_data():
     userCode = request.form['Solution']
-    testCode = userCode + "\n" + challengeTests
+    testCode = userCode + "\n" + challenge[0]['test']
 
     r = requests.post('http://rh-codeservice-vmengine1.appspot.com/src', data={
         "src": testCode,

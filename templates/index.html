@@ -4,7 +4,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
   </head>
   <body>
+    {% if vars['challengeNum'] %}
+    <h2>{{ vars['challengeNum'] }}</h2>
+    {% else %}
     <h2>The Challenge is:</h2>
+    {% endif %}
     <p><strong>{{ vars['challenge'] }}</strong>
 
     <form action="/" method="post">

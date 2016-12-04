@@ -13,6 +13,7 @@ challenge = [{
 
 app = Flask(__name__)
 vars = {}
+vars['challengeNum'] = challenges.ChallengeOne().name
 vars['challenge'] =  challenges.ChallengeOne().description
 vars['tests'] = ast.literal_eval(challenges.ChallengeOne().tests)
 vars['response'] = None

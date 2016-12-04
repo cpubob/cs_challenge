@@ -1,5 +1,7 @@
 import requests
 from flask import Flask, render_template,request,jsonify
+import challenges
+import ast
 
 challenge = [{
     'test':'for t in [[1.05,1],[1.25,1.25],[-1.26,-1.25],[.38,.5]]:\n  print g(t[0]) == t[1]',
@@ -11,15 +13,15 @@ challenge = [{
 
 app = Flask(__name__)
 vars = {}
-vars['challenge'] =  challenge[0]['description']
-
+vars['challenge'] =  challenges.ChallengeOne().description
+vars['tests'] = ast.literal_eval(challenges.ChallengeOne().tests)
 vars['response'] = None
 
 
 
 @app.route('/')
 def get_root():
-    vars['solution'] = challenge[0]['baseSolution']
+    vars['solution'] = challenges.ChallengeOne().base
     vars['response'] = None
 
     return render_template("index.html", vars=vars)
@@ -33,7 +35,7 @@ def add_message(uuid):
 @app.route('/', methods=['POST'])
 def post_data():
     userCode = request.form['Solution']
-    testCode = userCode + "\n" + challenge[0]['test']
+    testCode = userCode + "\n" + challenges.ChallengeOne().testing
 
     r = requests.post('http://rh-codeservice-vmengine1.appspot.com/src', data={
         "src": testCode,
@@ -48,7 +50,7 @@ def post_data():
             vars['response'] = "Test %s failed" % i
             break
     else:
-        vars['response'] = "Success!!!"
+        vars['response'] = "Success!!!" + "\n"
 
     vars['solution'] = request.form['Solution']
     return render_template("index.html", vars=vars)

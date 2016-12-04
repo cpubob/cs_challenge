@@ -1,3 +1,18 @@
 body {
-  background: green;
+  background-color: whitesmoke;
+  background-image: linear-gradient(to bottom left, blue, red, yellow);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+html {
+  height: 100%;
+}
+td {
+    text-align: center;
+}
+textarea {
+  width: 50%;
+  min-width: 300px;
+
 }

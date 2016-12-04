@@ -4,9 +4,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
   </head>
   <body>
-
-    <h1>The Challenge is:</h1>
-    <p>{{ vars['challenge'] }}
+    <h2>The Challenge is:</h2>
+    <p><strong>{{ vars['challenge'] }}</strong>
 
     <form action="/" method="post">
       <textarea name="Solution" rows=20 cols=100 >{% if vars['solution'] %}{{ vars['solution'] }}{% else %}def g(a, b):
@@ -19,6 +18,14 @@
       <p>{{ vars['response'] }}
     {% endif %}
 
-
+    {% if vars['tests'] %}
+      <h2> Tests to be run</h2>
+      <table border="1">
+        <tr><td>Test</td><td>Values</td><td>Expected result</td></tr>
+      {% for t in vars['tests'] %}
+          <tr><td>{{ loop.index - 1 }}</td><td>{{ t[0] }}</td><td>{{ t[1] }}</td></tr>
+      {% endfor %}
+      </table>
+    {% endif %}
   </body>
 </html>
